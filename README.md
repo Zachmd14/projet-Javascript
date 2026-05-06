@@ -1,6 +1,12 @@
 # projet-Javascript
 Projet Javascript Semestre 2
 
+## changements a faire
+- ordonner les lignes du tableau
+- corriger l'outline du tableau
+- ajouter d'autres types de graphs
+- trouver des idees de features utilisant du js
+
 ## csv def
 | Champ | Signification |
 |---|---|
@@ -19,6 +25,7 @@ Projet Javascript Semestre 2
 ## Exemple website
 ![2026-04-29-081626_952x874_scrot.png]
 ![2026-04-29-081636_939x875_scrot.png]
+
 
 ## lien csv
 - https://explore.data.gouv.fr/fr/datasets/53698f4ca3a729239d2036df/#/resources/fd30513c-6b11-4a56-b6dc-5ac87728794b
