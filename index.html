@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Accidents 2024</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
+  <h1>Accidents 2024</h1>
+  <div class="callout">
+    <h3>
+      Explication des donnees :
+    </h3>
+      <ul>
+	<li><b>Véhicule : </b>Numero d'ordre du vehicule</li>
+	<li><b>Categorie vehicule : </b>Type de vehicule</li>
+	<li><b>Choc : </b>Nombre de chocs sur le vehicule</li>
+      </ul>
+  </div>
+  <p id="compteur"></p>
+  <table border="1">
+    <thead>
+      <tr>
+        <!-- <th>Identifiant des accidents</th> -->
+        <th>Véhicule</th>
+        <th>Catégorie véhicule</th>
+        <th>Choc</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <script src="data.js"></script> 
+  <script src="script.js"></script>
 </body>
 </html>

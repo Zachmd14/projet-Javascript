@@ -1,5 +1,23 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Tableau minimal */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: 600;
+}
+
+.callout {
+    padding: 12px 16px;
+    background: #f0f7ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 14px;
 }
