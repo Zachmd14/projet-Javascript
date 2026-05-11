@@ -76,6 +76,8 @@ tr:hover {
   background: #eef2f7;
 }
 
+th { cursor: pointer; }
+
 /* Select */
 select {
   margin: 20px 0 25px;

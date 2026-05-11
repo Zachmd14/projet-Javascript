@@ -2,11 +2,8 @@
 Projet Javascript Semestre 2
 
 ## changements a faire
-- ordonner les lignes du tableau
-- corriger l'outline du tableau
 - ajouter d'autres types de graphs
 - trouver des idees de features utilisant du js
-- CORRIGER LES FAUTES DE GRAMMAIRES
 
 ## csv def
 | Champ | Signification |

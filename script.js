@@ -1,16 +1,33 @@
-document.getElementById('compteur').textContent =+ data.length + ' lignes dans le tableau';
+// document.getElementById('compteur').textContent =+ data.length + ' lignes dans le tableau';
 
 const tbody = document.getElementById('tbody');
 
-// test on affiche les 50 premieres lignes
-data.slice(0, 50).forEach(a => {
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td>${a['num_veh']}</td>
-    <td>${a['catv']}</td>
-    <td>${a['choc']}</td>
-  `;
-  tbody.appendChild(tr);
+// Tri du tableau
+function afficherTableau(lignes) {
+  tbody.innerHTML = '';
+  lignes.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${a['num_veh']}</td><td>${a['catv']}</td><td>${a['choc']}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+afficherTableau(data.slice(0, 50));
+
+// Trier quand on clique sur une colonne
+document.querySelectorAll('th').forEach((th, i) => {
+  th.addEventListener('click', function() {
+    const cols = ['num_veh', 'catv', 'choc'];
+    const col = cols[i];
+
+    const lignesTri = data.slice(0, 50).sort(function(a, b) {
+      if (a[col] > b[col]) return 1;
+      if (a[col] < b[col]) return -1;
+      return 0;
+    });
+
+    afficherTableau(lignesTri);
+  });
 });
 
 // graph a barre
