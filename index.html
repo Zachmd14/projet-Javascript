@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Accidents 2024</title>
+  <!-- chargement css -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Statistiques accidents de la route 2024</h1>
+
+  <!-- callout explicatif pour les types de vehicules -->
   <div class="callout">
     <h3>Explication des données :</h3>
     <ul>
@@ -14,9 +17,8 @@
       <li>
         <b>Catégorie véhicule :</b> Type de véhicule
         <details>
-          <summary>
-            Signification :
-          </summary>
+	  <!-- liste deroublable  -->
+          <summary>Signification :</summary> 
           <ul>
             <li><b>01 :</b> Bicyclette</li>
             <li><b>02 :</b> Cyclomoteur &lt;= 50cm3</li>
@@ -30,8 +32,7 @@
             <li><b>20 :</b> Engin spécial</li>
             <li><b>21 :</b> Tracteur agricole</li>
             <li><b>30 :</b> Scooter &lt;=50cm3</li>
-            <li><b>31 :</b> Moto ou sidecar &gt; 50
-            &lt;=125cm3</li>
+            <li><b>31 :</b> Moto ou sidecar &gt; 50 &lt;=125cm3</li>
             <li><b>32 :</b> Scooter &gt; 50 &lt;=125cm3</li>
             <li><b>33 :</b> Moto ou sidecar &gt; 125cm3</li>
             <li><b>35 :</b> Quad léger &lt;= 50cm3</li>
@@ -51,31 +52,42 @@
       </li>
       <li><b>Choc :</b> Nombre de chocs sur le véhicule</li>
     </ul>
+    <a href="https://explore.data.gouv.fr/fr/datasets/53698f4ca3a729239d2036df/#/resources/fd30513c-6b11-4a56-b6dc-5ac87728794b" target="_blank">🔗 Accéder aux données sur data.gouv.fr</a>
   </div>
-  <p id="compteur"></p>
+
+  <!-- tableau des données affichées -->
   <table>
     <thead>
       <tr>
-        <!-- <th>Identifiant des accidents</th> -->
-        <th>Véhicule</th>
-        <th>Catégorie véhicule</th>
-        <th>Choc</th>
+        <th>Véhicule ⇅</th>
+        <th>Catégorie véhicule ⇅</th>
+        <th>Choc ⇅</th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
-  </table><select id="columnSelect">
-    <option value='catv'>
-      Type véhicule
-    </option>
-    <option value='choc'>
-      Nombre de chocs
-    </option>
-  </select> 
+  </table>
+
+  <!-- sélecteur pour choisir la colonne à analyser dans les graphiques -->
+  <select id="columnSelect">
+    <option value='choc'>Nombre de chocs</option>
+    <option value='catv'>Type véhicule</option>
+  </select>
+
+  <!-- chargement de chart.js pour les graphiques -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <canvas id="chart"></canvas>
-  <script src="data.js"></script> 
-  <script src="script.js"></script> <a href=
-  "https://explore.data.gouv.fr/fr/datasets/53698f4ca3a729239d2036df/#/resources/fd30513c-6b11-4a56-b6dc-5ac87728794b"
-  target="_blank">Accéder aux données sur data.gouv.fr</a>
+
+  <!-- conteneurs des deux graphiques -->
+  <div style="display: flex; gap: 2rem; align-items: flex-start;">
+    <div style="width: 60%;">
+      <canvas id="chart"></canvas>   <!-- graphique en barres -->
+    </div>
+    <div style="width: 40%;">
+      <canvas id="chartPie"></canvas> <!-- graphique en camembert -->
+    </div>
+  </div>
+
+  <!-- chargement des donnees + script -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

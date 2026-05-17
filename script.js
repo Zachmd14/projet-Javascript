@@ -1,8 +1,6 @@
-// document.getElementById('compteur').textContent =+ data.length + ' lignes dans le tableau';
-
 const tbody = document.getElementById('tbody');
 
-// Tri du tableau
+// affichage du tableau
 function afficherTableau(lignes) {
   tbody.innerHTML = '';
   lignes.forEach(a => {
@@ -12,14 +10,16 @@ function afficherTableau(lignes) {
   });
 }
 
-afficherTableau(data.slice(0, 50));
+// affiche toutes les donnes au chargement
+afficherTableau(data);
 
-// Trier quand on clique sur une colonne
+// trie quand on clique sur une colonne
 document.querySelectorAll('th').forEach((th, i) => {
   th.addEventListener('click', function() {
     const cols = ['num_veh', 'catv', 'choc'];
     const col = cols[i];
 
+    // trie sur la colonne clique
     const lignesTri = data.slice(0, 50).sort(function(a, b) {
       if (a[col] > b[col]) return 1;
       if (a[col] < b[col]) return -1;
@@ -44,26 +44,25 @@ function groupByColumn(column) {
 
   return counts;
 }
-let chart; // global
+
+let chart; // reference globale pour pouvoir detruire / creer le graphique
 
 function createChart(column) {
-
   const grouped = groupByColumn(column);
-
   const labels = Object.keys(grouped);
   const values = Object.values(grouped);
-
   const ctx = document.getElementById("chart");
 
-  // supprimer ancien graphique
+  // supprime l'ancien graphique
   if (chart) chart.destroy();
 
+  // creer le graphique
   chart = new Chart(ctx, {
     type: "bar",
     data: {
       labels: labels,
       datasets: [{
-        label: column,
+        label: column === 'catv' ? 'Type véhicule' : 'Nombre de chocs',
         data: values
       }]
     },
@@ -71,15 +70,84 @@ function createChart(column) {
       responsive: true,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Nombre d\'accidents'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: column === 'catv' ? 'Catégorie véhicule' : 'Nombre de chocs'
+          }
         }
       }
     }
   });
 }
+
+// selecteur permettant de choisir la colonne a visualiser
 const columnSelect = document.getElementById("columnSelect");
 
-columnSelect.addEventListener("change", () => {
-  createChart(columnSelect.value);
+if (columnSelect) {
+  columnSelect.addEventListener("change", () => {
+    createChart(columnSelect.value);
+  });
+}
+
+let chartPie; // reference globale pour pouvoir detruire / creer le graphique
+
+function createPieChart() {
+  const grouped = groupByColumn('catv');
+  const entries = Object.entries(grouped);
+
+  // tri par odre decroissant pour garder les categories les plus representees
+  entries.sort((a, b) => b[1] - a[1]);
+
+  const top6 = entries.slice(0, 6);
+  const otherCount = entries.slice(6).reduce((sum, entry) => sum + entry[1], 0);
+
+  const labels = top6.map(entry => entry[0]);
+  const values = top6.map(entry => entry[1]);
+
+  // regroupe les "autres" categories
+  if (otherCount > 0) {
+    labels.push('Autres');
+    values.push(otherCount);
+  }
+
+  const ctx = document.getElementById('chartPie');
+  if (chartPie) chartPie.destroy();
+
+  chartPie = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: labels.map((_, i) =>
+          `hsl(${(i * 360 / labels.length)}, 65%, 60%)`
+        )
+      }]
+    },
+    options: { 
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right'
+        },
+        title: {
+          display: true,
+          text: 'Répartition par type de véhicule'
+        }
+      }
+    }
+  });
+}
+
+// initialisation des graphs au chargement de la page
+window.addEventListener('DOMContentLoaded', () => {
+  createChart('choc');
+  createPieChart();
 });
-createChart('choc');
