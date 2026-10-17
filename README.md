@@ -54,9 +54,7 @@ Le fichier `data.js` contient une sélection du fichier `vehicules-2024.csv`. Le
 
 ## Aperçu
 
-![Aperçu du tableau](ressources/2026-04-29-081626_952x874_scrot.png)
-
-![Aperçu des graphiques](ressources/2026-04-29-081636_939x875_scrot.png)
+![Aperçu du site](./screenshot_preview.png)
 
 ## Pistes d'amélioration
 
