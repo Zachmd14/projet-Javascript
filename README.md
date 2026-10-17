@@ -54,7 +54,7 @@ Le fichier `data.js` contient une sélection du fichier `vehicules-2024.csv`. Le
 
 ## Aperçu
 
-![Aperçu du site](./screenshot_preview.png)
+![Aperçu du site](ressources/screenshot_preview.png)
 
 ## Pistes d'amélioration
 
